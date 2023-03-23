@@ -1,0 +1,39 @@
+<!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="deznav" *ngIf="(user$ |async) as user">
+            <div class="deznav-scroll">
+                <ul class="metismenu" id="menu">
+                    <!-- <li><a class="has-arrow" routerLink="/protected/dashboard" routerLinkActive aria-expanded="false">
+                            <i class="flaticon-025-dashboard"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li> -->
+                    <li><a class="has-arrow" routerLink="/protected/invoices" routerLinkActive aria-expanded="false">
+                            <i class="flaticon-050-info"></i>
+                            <span class="nav-text">Invoice</span>
+                        </a>
+                    </li>
+                    <li><a class="has-arrow" routerLink="/protected/stocks" routerLinkActive aria-expanded="false">
+                            <i class="flaticon-041-graph"></i>
+                            <span class="nav-text">Stock</span>
+                        </a>
+                    </li>
+                    <li *ngIf="user.roles.includes('ROLE_ADMIN')"><a class="has-arrow" routerLink="/protected/invoices" routerLinkActive aria-expanded="false">
+                            <i class="flaticon-086-star"></i>
+                            <span class="nav-text">Approvals</span>
+                        </a>
+                    </li>
+        
+                    <li><a class="has-arrow" routerLink="/protected/customers" routerLinkActive aria-expanded="false">
+                            <i class="flaticon-041-graph"></i>
+                            <span class="nav-text">Customer</span>
+                        </a>
+                    </li>
+                </ul>
+        
+            </div>
+        </div>
+        <!--**********************************
+                    Sidebar end
+                ***********************************-->

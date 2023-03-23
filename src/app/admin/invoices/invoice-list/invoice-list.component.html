@@ -1,0 +1,97 @@
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Invoice</h4>
+            
+            <!-- <div class="col-lg-6">
+                <select class="default-select wide form-control" id="validationCustom05">
+                    <option data-display="Select">Filter</option>
+                    <option value="html">All</option>
+                    <option value="css">Complete</option>
+                    <option value="javascript">Pending</option>
+                    <option value="angular">Rejected</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a one.
+                </div>
+            </div> -->
+            <button class="btn btn-success btn-sm" style="margin-left: 200px;" [routerLink]="['/protected/invoices/create-for-approve']">Create</button>
+
+        </div>
+        <div class="card-body"*ngIf="(invoices$|async) as invoices" >
+            <div class="table-responsive" *ngIf="(user$|async) as user">
+                <p-table #dt3 [value]="invoices" dataKey="id" [sortOrder]="-1"
+        [rows]="10" [showCurrentPageReport]="true" sortField="id    " [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['name','number','customer.name','status']" [tableStyle]="{'min-width':'75rem'}">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt3.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width:22%">Ref. No</th>
+                            <th style="width:22%">Customer</th>
+                            <th style="width:22%">Sales Manager/Agent</th>
+                            <th style="width:22%">Status</th>
+                            <th style="width:22%">Action</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p-columnFilter type="text" field="number"></p-columnFilter>
+                            </th>
+                            <th>
+                                <p-columnFilter type="text" field="customer.name"></p-columnFilter>
+                            </th>
+                            <th>
+                                <p-columnFilter type="text" field="customer?.agent.name"></p-columnFilter>
+                            </th>
+                            
+                            <th>
+                                <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+                                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                        <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
+                                            <ng-template let-option pTemplate="item">
+                                                <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+                                            </ng-template>
+                                        </p-dropdown>
+                                    </ng-template>
+                                </p-columnFilter>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-invoice>
+                        <tr>
+                            <td>{{invoice.number}}</td>
+                            <td>{{invoice.customer.name}}</td>
+                            <td>{{invoice.customer.agent?.name}}</td>
+                            
+                            <td><span [class]="'product-badge status-'">{{invoice.status}}</span></td>
+                            <td>
+                                <a *ngIf="user.roles.includes('ROLE_ADMIN')&& !(invoice.isApproved && invoice.approvedBy>0)" [routerLink]="['/protected/invoices/',invoice.id,'approve']"  class="badge light badge-success ml-2 ">Approve<span class="ms-1 fa fa-check"></span></a>
+                                <a  [routerLink]="['/protected/invoices/',invoice.id,'view']"  class="badge light badge-info ml-2 ">View<span class="ms-1 fa fa-eye"></span></a>
+                                <a *ngIf="user.roles.includes('ROLE_USER') && (invoice.isApproved && invoice.approvedBy>0)" [routerLink]="['/protected/invoices/',invoice.id,'print']" class="badge light badge-info ml-2">Print<span class="ms-1 fa fa-print"></span></a>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="7">No customers found.</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="flex align-items-center justify-content-between">
+                            In total there are {{invoices ? invoices.length : 0 }} invices.
+                        </div>
+                    </ng-template>
+                </p-table>
+                
+            </div>
+        </div>
+    </div>
+</div>

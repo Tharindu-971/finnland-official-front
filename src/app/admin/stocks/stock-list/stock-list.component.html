@@ -1,0 +1,108 @@
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Stock</h4>
+            <button class="btn btn-success btn-sm" style="margin-left: 200px;" [routerLink]="['/protected/stocks/create']">Create</button>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <!-- <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="datatableexample">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Sell Price</th>
+                        <th>Buy Price</th>
+                        <th>Quantity</th>
+                        <th>Re-Order Level</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     <tr *ngFor="let group of data">
+                           <td>{{group.id}}</td>
+                           <td>{{group.name}}</td>
+                           <td>{{group.sellingPrice}}</td>
+                           <td>{{group.buyingPrice}}</td>
+                           <td>{{group.quantity}}</td>
+                           <td>{{group.reOrderLevel}}</td>
+                           
+                       </tr>
+                    </tbody>
+                  </table> -->
+            
+
+        <p-table #dt2 [value]="data" dataKey="id"
+        [rows]="10" [showCurrentPageReport]="true" sortField="id" [sortOrder]="-1" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['name','code','status']" [tableStyle]="{'min-width':'75rem'}">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt2.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width:18%">Code</th>
+                            <th style="width:22%">Name</th>
+                            <th style="width:15%">Price</th>
+                            <th style="width:15%">Quantity</th>
+                            <th style="width:20%">Status</th>
+                            <th style="width:10%">Action</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p-columnFilter type="text" field="code"></p-columnFilter>
+                            </th>
+                            <th>
+                                <p-columnFilter type="text" field="name"></p-columnFilter>
+                            </th>
+                            
+                            <th></th>
+                            <th></th>
+                            <th>
+                                <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+                                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                        <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
+                                            <ng-template let-option pTemplate="item">
+                                                <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+                                            </ng-template>
+                                        </p-dropdown>
+                                    </ng-template>
+                                </p-columnFilter>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td>{{product.code}}</td>
+                            <td>{{product.name}} - <span style="font-weight: bold;">{{product.strength}}%</span></td>
+                            <td>{{product.sellingPrice | currency:'LKR'}}</td>
+                            <td>{{product.quantity}}</td>
+                            
+                            <td><span [class]="'product-badge status-' + product.status.toLowerCase()">{{product.status}}</span></td>
+                            <td>
+                                <a  [routerLink]="['/protected/stocks/','edit',product.id]"  class="badge light badge-info">Edit<span class="ms-1 ml-2 fa fa-edit"></span></a>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="7">No customers found.</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="flex align-items-center justify-content-between">
+                            In total there are {{data ? data.length : 0 }} products.
+                        </div>
+                    </ng-template>
+                </p-table>
+                
+
+                </div>
+        </div>
+    </div>
+</div>

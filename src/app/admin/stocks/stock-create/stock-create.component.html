@@ -1,0 +1,128 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">New Stock</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-validation">
+                <form [formGroup]="stockForm" (ngSubmit)="onSubmit(stockForm)" class="needs-validation"
+                    novalidate="">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="name">Name
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" formControlName="name" id="name"
+                                        placeholder="Enter a Name.." >
+                                    <div *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)">
+                                        <div *ngIf="f['name'].errors['required']" class="help-block has-error">
+                                            Name is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="code">Code <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="number" readonly class="form-control" formControlName="code" id="code"
+                                        placeholder="Enter Buying Price.." >
+                                    <!-- <div *ngIf="f['code'].invalid && (f['code'].dirty || f['code'].touched)">
+                                        <div *ngIf="f['code'].errors['required']" class="help-block has-error">
+                                            Code is required.
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="sellingPrice">Unit Price(LKR) <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="number" class="form-control" formControlName="sellingPrice" id="sellingPrice"
+                                        placeholder="Enter Selling Price.." >
+                                    <div *ngIf="f['sellingPrice'].invalid && (f['sellingPrice'].dirty || f['sellingPrice'].touched)">
+                                        <div *ngIf="f['sellingPrice'].errors['required']" class="help-block has-error">
+                                            Unit Price is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="quantity">Quantity <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="number" class="form-control" formControlName="quantity" id="quantity"
+                                        placeholder="Enter Quantity.." >
+                                    <div *ngIf="f['quantity'].invalid && (f['quantity'].dirty || f['quantity'].touched)">
+                                        <div *ngIf="f['quantity'].errors['required']" class="help-block has-error">
+                                            Quantity is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="col-xl-6">
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="reOrderLevel">Re-Order Level <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="number" class="form-control" formControlName="reOrderLevel" id="reOrderLevel"
+                                        placeholder="Enter Re-Order Level.." >
+                                    <div *ngIf="f['reOrderLevel'].invalid && (f['reOrderLevel'].dirty || f['reOrderLevel'].touched)">
+                                        <div *ngIf="f['reOrderLevel'].errors['required']" class="help-block has-error">
+                                            Re-Order Level is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="unitLiters">Volume (ml) <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="number" class="form-control" formControlName="unitLiters" id="unitLiters"
+                                        placeholder="Enter Unit Voiume.." >
+                                    <div *ngIf="f['unitLiters'].invalid && (f['unitLiters'].dirty || f['unitLiters'].touched)">
+                                        <div *ngIf="f['unitLiters'].errors['required']" class="help-block has-error">
+                                            Unit Volume is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label"  for="liters">Total Liters <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="number" readonly class="form-control" formControlName="liters" id="liters"
+                                        placeholder="Total Liters.." >
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label"  for="strength">Strength (%)</label>
+                                <div class="col-lg-6">
+                                    <input type="number" class="form-control" formControlName="strength" id="strength"
+                                        placeholder="Strength.." >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="!stockForm.valid" class="btn me-2 btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

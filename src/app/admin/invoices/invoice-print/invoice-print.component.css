@@ -1,0 +1,37 @@
+.table-center{
+    text-align: center;
+}
+
+
+
+.table-right{
+    text-align: end;
+}
+.table-cell-width{
+    text-align: start;
+    /* max-width: 250px;
+    width: 200px; */
+}
+.test{
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+td[rowspan] {
+    vertical-align: top;
+    text-align: left;
+  }
+
+  .table th, .table tr, .table td {
+    border: none !important;
+    padding: 0 !important;
+}
+
+.test1{
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+}

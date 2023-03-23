@@ -1,0 +1,120 @@
+<div>
+   
+
+
+
+
+    <div class="col-xl-12">
+        <div class="card" *ngIf="(invoice$|async) as invoice">
+            <div class="card-body" *ngIf="(filterStocks$ | async) as stocks">
+
+                <div class="row" >
+                    
+                    <div class="col-lg-6 order-lg-2 " >
+                        <h4 class="mb-3">Cart Details</h4>
+                        <div class="mb-3">
+                            <label class="text-label form-label" for="validationCustomUsername">Search Item</label>
+                            <div class="input-group">
+                                <!-- <p-autoComplete  autocomplete [showClear]="true" [suggestions]="stocks" (onSelect)="addToCart($event)" (completeMethod)="search($event)" field="name"></p-autoComplete> -->
+                                <p-autoComplete  [suggestions]="stocks" (completeMethod)="search($event)" (onSelect)="addToCart($event)" field="name" [showClear]="true" >
+                                    <ng-template let-stock pTemplate="item">
+                                        <div class="country-item">
+                                            
+                                            <div>{{stock.name}}-{{stock.unitLiters}} ml</div>
+                                        </div>
+                                    </ng-template>
+                                </p-autoComplete>
+                            </div>
+                        </div>
+                        <h4 class="d-flex justify-content-between align-items-center">
+                            <span class="text-muted">Your cart</span>
+                            <span class="badge badge-primary badge-pill">{{invoice.number}}</span>
+                            <span class="badge badge-primary badge-pill"></span>
+                        </h4>
+                        <ul class="list-group ">
+                            <li class="list-group-item d-flex justify-content-between lh-condensed"
+                                *ngFor="let item of invoice.inventories">
+                                <div>
+                                    <h6 class="my-0">{{item.name}}</h6>
+                                    <small class="text-muted">{{item.inStock ?'INSTOCK':'OUTOFSTOCK'}}</small>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <input type="number" style="width: 100px; text-align: right;" #qty
+                                        (keyup)="addAmount(item.id,qty.value)" [value]="item.invoiceQty"
+                                        class="form-control" />
+
+                                </div>
+                                <div class="mr-0">
+                                    
+                                    <span class="text-muted">LKR {{item.invoiceQty*item.sellingPrice | number : '1.2-2'}}</span>
+
+                                </div>
+                                <div>
+                                    <button class="btn btn-danger dark me-1 px-3" (click)="removeItem(item.id)"><i
+                                            class="fa fa-trash m-0"></i> </button>
+                                </div>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Sub Total (LKR)</span>
+                                <strong>{{invoice.subTotal}}</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>VAT (15%)</span>
+                                <div>
+                                    <strong>{{invoice.tax}}</strong>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (LKR)</span>
+                                <strong>{{invoice.total}}</strong>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 order-lg-1"*ngIf="(filterCustomers$ | async) as customers">
+                        <h4 class="mb-3">Customer Details</h4>
+                        <form class="form-valide-with-icon needs-validation" novalidate="">
+                            <div class="mb-3">
+                                <label>Search Customer</label>
+                                <div class="input-group">
+                                    <p-autoComplete  autocomplete [showClear]="true" [suggestions]="customers" (onSelect)="addCustomer($event)" (completeMethod)="search2($event)" field="name"></p-autoComplete>
+                                </div>
+                            </div>
+
+                        </form>
+                        
+
+
+
+
+
+                        <div class="card-body pb-3" *ngIf="invoice.customer.id!=0">
+                            <h4>{{invoice.customer.name}}</h4>
+                            <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item d-flex px-0 justify-content-between">
+                                    <strong>Mobile</strong>
+                                    <span class="mb-0">{{invoice.customer.mobile}}</span>
+                                </li>
+                                <li class="list-group-item d-flex px-0 justify-content-between">
+                                    <strong>Address</strong>
+                                    <span class="mb-0">{{invoice.customer.address1}}</span>
+                                </li>
+                                <li class="list-group-item d-flex px-0 justify-content-between">
+                                    <strong>Email</strong>
+                                    <span class="mb-0">{{invoice.customer?.email}}</span>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        
+                    </div>
+
+                </div>
+            </div>
+            <button (click)="submit(invoice)" style="max-width: 400px; margin: auto;" class="btn btn-primary btn-lg btn-block">SUBMIT FOR APPROVE</button>
+        </div>
+    </div>
+</div>
+<!-- [disabled]="!customerDetails.valid" -->

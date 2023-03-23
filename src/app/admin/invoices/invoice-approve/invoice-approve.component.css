@@ -1,0 +1,20 @@
+.table-center{
+    text-align: center;
+}
+
+.table-right{
+    text-align: end;
+}
+.table-cell-width{
+    text-align: start;
+    max-width: 250px;
+    width: 200px;
+}
+.test{
+    display: flex;
+    justify-content: space-between;
+}
+td[rowspan] {
+    vertical-align: top;
+    text-align: left;
+  }

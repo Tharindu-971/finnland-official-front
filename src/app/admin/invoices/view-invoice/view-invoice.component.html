@@ -1,0 +1,411 @@
+<div class="col-lg-12">
+
+    <div class="card mt-3" >
+
+        <div class="card-body" *ngIf="(invoice$ |async) as invoice">
+            <div class="row mb-5">
+
+                <div
+                    class="mt-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-lg-center justify-content-md-center justify-content-xs-start">
+                    <div class="row align-items-center">
+                        <div class="col-sm-12">
+                            <div class="brand-logo mb-3">
+                                <img class="logo-abbr me-2" width="240" height="200" src="assets/images/finnland.png"
+                                    alt="">
+
+                            </div>
+                            <!-- <span>Please send exact amount: <strong class="d-block">0.15050000 BTC</strong>
+                                <strong>1DonateWffyhwAjskoEwXt83pHZxhLTr8H</strong></span><br>
+                            <small class="text-muted">Current exchange rate 1BTC = LKR 6590 USD</small> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="demo" class="table-responsive">
+                <table  class="table table-bordered">
+                    <!-- <thead>
+                        <tr>
+                            <th class="center">#</th>
+                            <th>Item</th>
+                            <th class="right">Unit Cost</th>
+                            <th class="center">Qty</th>
+                            <th class="right">Total</th>
+                        </tr>
+                    </thead> -->
+                    <tbody>
+                        <!-- <tr>
+                            <td class="table-center" colspan="8" style="font-size: 22px;"></td>
+                        </tr> -->
+                        <tr>
+                            <td class="table-center" colspan="8" style="font-size: 22px;">FINNLAND DISTILLERIES CORPORATION (PVT) LTD</td>
+                        </tr>
+                        <tr><td class="table-center" colspan="8">No. 07, Morukkuliya Road,Dankotuwa.</td></tr>
+                        <tr><td class="table-center" colspan="8">Tel. No:011-2331125        Email:accounts@finnland.lk</td></tr>
+                        <tr><td class="table-center" colspan="8" style="font-size: 26px; font-weight: bold;">TAX INVOICE</td></tr>
+                        <tr>
+                            <td rowspan="2"  colspan="8"></td>
+                            <!-- <td class="table-right">INVOICE NO</td>
+                            <td>{{invoice.number}}</td> -->
+                        </tr>
+                        <tr>
+
+                            <!-- <td class="table-right">DELEVERY DATE</td>
+                            <td class="table-cell-width">2022-11-29</td> -->
+                        </tr>
+                        <tr>
+                            <td >
+                                <div class="test">
+                                    <div>Company Vat No.</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            
+                            <td colspan="3">104083811- 7000</td>
+                            <!-- <td  colspan="2" style="width: 5px;" ></td> -->
+                            <td  style="min-width: 120px;">
+                                <div class="test">
+                                    <div>Date</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3">{{myDate | date: 'dd.MM.yyyy' }}</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="test">
+                                    <div>Customer Name</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            
+                            <td colspan="3">{{invoice.customer.name}}</td>
+                            <td >
+                                <div class="test">
+                                    <div>Invoice No</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3">{{invoice.number}}</td>
+                            
+                        </tr>
+                        <tr>
+                            <td >
+                                <div class="test">
+                                    <div>Address</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            
+                            <td colspan="3" rowspan="5" >{{invoice.customer.address1}}</td>
+                            <td >
+                                <div class="test">
+                                    <div>Order No.</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3">{{invoice.id}}</td>
+                            
+                        </tr>
+                        <tr>
+                            <td  rowspan="4" ></td>
+                            <td >
+                                <div class="test">
+                                    <div>District</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3"></td>
+                            
+                        </tr>
+                        <tr>
+
+                            <td >
+                                <div class="test">
+                                    <div>Area</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3"></td>
+                            
+                        </tr>
+                        <tr>
+
+                            <td >
+                                <div class="test">
+                                    <div>Excise Station</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3"></td>
+                            
+                        </tr>
+                        <tr>
+                            
+                            <td >
+                                <div class="test">
+                                    <div>CST No.</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3">
+                                <input type="text" class="form-control form-control-sm"  id="cst"
+                                placeholder="Enter a CST number" >
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td >
+                                <div class="test">
+                                    <div>Contact Number</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            
+                            <td colspan="3">{{invoice.customer.mobile}}</td>
+                            <td >
+                                <div class="test">
+                                    <div>Lorry No.</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3">
+                                <div class="form-group">
+                                        
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                      <option>LO-4872</option>
+                                      <option>LO-4881</option>
+                                      <option>LO-5760</option>
+                                      <option>LO-5761</option>
+                                      <option>PY-2396</option>
+                                    </select>
+                                  </div>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td >
+                                <div class="test">
+                                    <div>Customer Vat No.</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            
+                            <td colspan="3">
+
+                            </td>
+                            <td >
+                                <div class="test">
+                                    <div>Delivery Date 
+                                    </div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3">
+                                <p-calendar inputId="basic"  [(ngModel)]="deliveryDate" dateFormat="dd.mm.yy"></p-calendar>
+                            </td>
+                            
+                        </tr>
+                        <!-- <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">NAME & ADDRESS OF CUSTOMER</td>
+                            <td class="tabel-right" colspan="2">EXICE STATION</td>
+                            <td colspan="2">Nuwara Eliya</td>
+                        </tr>
+                        <tr>
+                            <td class="tabel-right" colspan="2">Name:</td>
+                            <td colspan="2">{{invoice.customer.name}}</td>
+                            <td class="tabel-right" colspan="2">LORRY NO</td>
+                            <td colspan="2">NG-3344</td>
+                        </tr>
+                        <tr>
+                            <td class="tabel-right" colspan="2">Mobile:</td>
+                            <td colspan="2">{{invoice.customer.mobile}}</td>
+                            <td class="tabel-right" rowspan="2" colspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td class="tabel-right" colspan="2">Address:</td>
+                            <td colspan="2">{{invoice.customer.address1}}</td>
+
+                        </tr> -->
+
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>PRODUCT CODE</td>
+                            <td colspan="2">DESCRIPTION</td>
+                            <td >VOLUME</td>
+                            <td>QTY</td>
+                            <td>RATE PER BOTTLE</td>
+                            <td>LITERS</td>
+                            <td>VALUE</td>
+                        </tr>
+                        <tr *ngFor="let cart of invoice.invoiceQuantities">
+                            <td >{{cart.inventory.code}}</td>
+                            <td colspan="2">{{cart.inventory.name}}</td>
+                            <td>{{cart.inventory.unitLiters}} ml</td>
+                            <td *ngIf="invoice.isApproved">{{cart.approvedQuantity}}</td>
+                            <td *ngIf="!invoice.isApproved">{{cart.invoiceQuantity}}</td>
+                            <td>{{cart.inventory.sellingPrice}}</td>             
+                            <td *ngIf="invoice.isApproved">{{cart.approvedQuantity*(cart.inventory.unitLiters/1000)| number : '1.3-3'}} L</td>
+                            <td *ngIf="!invoice.isApproved">{{cart.invoiceQuantity*(cart.inventory.unitLiters/1000)| number : '1.3-3'}} L</td>
+                            <td *ngIf="invoice.isApproved">Rs. {{cart.inventory.sellingPrice*cart.approvedQuantity | number : '1.2-2'}}</td>
+                            <td *ngIf="!invoice.isApproved">Rs. {{cart.inventory.sellingPrice*cart.invoiceQuantity | number : '1.2-2'}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"></td>
+                            <td >Total Liters</td>
+                            <td colspan="2">{{(invoice.totalLiters/1000) | number : '1.3-3'}} L</td>
+
+                           
+                        </tr>
+                        <tr>
+                            <td colspan="6" rowspan="4"></td>
+                            <td >SUBTOTAL</td>
+                            <td>Rs. {{invoice.subTotal}}</td>
+                        </tr>
+                        <tr>
+                            <td >SSCL</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td >VAT 15%</td>
+                            <td>Rs. {{invoice.tax}}</td>
+                        </tr>
+                        <tr>
+                            <td >TOTAL</td>
+                            <td>Rs. {{invoice.total}}</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="8"></td>
+                        </tr>
+                        <tr>
+                            <td  colspan="8" >Cheques should be drawn in favour of <strong>"Finnland Distilleries Corporation (pvt) Ltd"</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="8"></td>
+                        </tr>
+                        <tr><td class="table-center" colspan="8" style="font-weight: bold;font-size: 14px;"><u>Acknowledgment of Goods</u></td></tr> 
+                        
+                        <tr>
+                            <td class="table-right" colspan="2" >
+                                <!-- <div class="test">
+                                    <div>Athorized  Signature</div>
+                                    <div>:</div>
+                                </div> -->
+                                Athorized  Signature :
+                            </td>
+                            
+                            <td colspan="2">
+                                _________________________________
+                            </td>
+                            
+                            <td class="table-right" colspan="2">
+                                <!-- <div class="test">
+                                    <div>Customer Name
+                                    </div>
+                                    <div>:</div>
+                                </div> -->
+                                Customer Name :
+                            </td>
+                            <td colspan="2">_________________________________</td>
+                            
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                
+                            </td>
+                            
+                            
+                            
+                            <td colspan="2">
+                                
+                            </td>
+                            <td colspan="2"></td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="table-right" colspan="2" >
+                                <!-- <div class="test">
+                                    <div>Sales officer Signature </div>
+                                    <div>:</div>
+                                </div> -->
+                                Sales officer Signature :
+                            </td>
+                            
+                            <td colspan="2">
+                                _________________________________
+                            </td>
+                            
+                            <td class="table-right" colspan="2">
+                                <!-- <div class="test">
+                                    <div>Date
+                                    </div>
+                                    <div>:</div>
+                                </div> -->
+                                Date :
+                            </td>
+                            <td colspan="2">______/_______/______________</td>
+                            
+                        </tr>
+                        <tr>
+                            <!-- <td colspan="6"></td> -->
+                            <td colspan="8" style="text-align: end;"><strong>(Received the above goods in correct quantity & in good condition)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-5"> </div>
+                <!-- <div class="col-lg-4 col-sm-5 ms-auto">
+                    <table class="table table-clear">
+                        <tbody>
+                            <tr>
+                                <td class="left"><strong>Subtotal</strong></td>
+                                <td class="right">LKR {{invoice.subtotal}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Discount ({{invoice.discount}}%)</strong></td>
+                                <td class="right">LKR {{invoice.discountAmount}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>VAT ({{invoice.tax}}%)</strong></td>
+                                <td class="right">LKR {{invoice.taxAmount}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Total</strong></td>
+                                <td class="right"><strong>LKR {{invoice.total}}</strong><br>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> -->
+                <div class="col-xl-6" *ngIf="(user$|async) as user">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="btn-group d-flex align-items-end">
+                                <button *ngIf="user.roles.includes('ROLE_ADMIN')" [routerLink]="['/protected/invoices/',invoice.id,'approve']" type="submit"  class="btn me-2 btn-warning">Edit</button>
+                    <button [routerLink]="['/protected/invoices']" class="btn btn-light">Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>

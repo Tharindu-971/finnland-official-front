@@ -1,0 +1,122 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Customer Create</h4>
+            <button class="btn btn-success btn-sm" style="margin-left: 200px;"
+        [routerLink]="['/protected/agents/create']">Create Sales Agent</button>
+        </div>
+        
+        <div class="card-body">
+            <div class="form-validation">
+                <form [formGroup]="customerForm" (ngSubmit)="onSubmit(customerForm)" class="needs-validation"
+                    novalidate="">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="name">Name
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" formControlName="name" id="name"
+                                        placeholder="Enter a Name.." >
+                                    <div *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)">
+                                        <div *ngIf="f['name'].errors['required']" class="help-block has-error">
+                                            Name is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="mobile">Mobile <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" formControlName="mobile" id="mobile"
+                                        placeholder="Your mobile.." >
+                                    <div *ngIf="f['mobile'].invalid && (f['mobile'].dirty || f['mobile'].touched)">
+                                        <div *ngIf="f['mobile'].errors['required']" class="help-block has-error">
+                                            Mobile is required.
+                                        </div>
+                                        <div class="help-block has-error" *ngIf="f['mobile'].errors['pattern']">
+                                            Mobile Number should only contain numbers.
+                                        </div>
+
+                                        <div class="help-block has-error"
+                                            *ngIf="!f['mobile'].errors['pattern'] &&(f['mobile'].errors['minlength'] || f['mobile'].errors['maxlength']) ">
+                                            Mobile Number must have 10 characters.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="address1">Address 1 <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-lg-6">
+                                    <textarea class="form-control" formControlName="address1" id="address1" rows="5"
+                                        placeholder="Enter your address" ></textarea>
+                                    <div
+                                        *ngIf="f['address1'].invalid && (f['address1'].dirty || f['address1'].touched)">
+                                        <div *ngIf="f['address1'].errors['required']" class="help-block has-error">
+                                            Address is required.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="address1">Select Sales Manager</label>
+                                <div class="col-lg-6 d-flex">
+                                    <select class="nice-select default-select wide form-control open" (change)="changeAgent($event)" formControlName="agentId">
+                                        <option data-display="Select" class="option selected focus" value="">Choose Sales Manager</option>
+                                        <option class="option" *ngFor="let city of agents" [value]="city.id">{{city.name}}</option>
+                                      </select>
+                                      
+                                      
+                                    
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label"  for="email">Email</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" formControlName="email" id="email" placeholder="Enter valid email.."
+                                        >
+                                    <div *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)">
+                                        <div *ngIf="f['email'].errors['email']" class="help-block has-error">
+                                            Email is not in correct format.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label"  for="vatNo">Vat No.</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" formControlName="vatNo" id="vatNo" placeholder="Enter vat number.."
+                                        >
+                                    <!-- <div *ngIf="f['vatNo'].invalid && (f['vatNo'].dirty || f['email'].touched)">
+                                        <div *ngIf="f['email'].errors['email']" class="help-block has-error">
+                                            Email is not in correct format.
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="address2">Address 2 (Optional) </label>
+                                <div class="col-lg-6">
+                                    <textarea class="form-control" formControlName="address2" id="address1" rows="5"
+                                        placeholder="Enter your address" ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="!customerForm.valid" class="btn me-2 btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

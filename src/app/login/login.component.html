@@ -1,0 +1,52 @@
+<div class="authincation h-100 ">
+    <div class="container h-100">
+      <div class="row justify-content-center h-100 align-items-center">
+        <div class="col-md-6">
+          <div class="authincation-content mt-5">
+            <div class="row no-gutters">
+              <div class="col-xl-12">
+                <div class="auth-form">
+                  <div class="text-center mb-3">
+                    <a href="index.html"><img src="images/logo-full.png" alt=""></a>
+                  </div>
+                  <h4 class="text-center mb-4">Sign in your account</h4>
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                      <label class="mb-1"><strong>Email</strong></label>
+                      <input formControlName="email"
+                        class="form-control" placeholder="hello@example.com">
+                    </div>
+
+                    <div *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)">
+                        <div *ngIf="f['email'].errors['required']" style="color: red;" class="help-block ">
+                            Email is required
+                        </div>
+                        <div *ngIf="f['email'].errors['email']" style="color: red;" class="help-block has-error">
+                            Email is not in correct format.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="mb-1"><strong>Password</strong></label>
+                      <input formControlName="password" 
+                        type="password" class="form-control" placeholder="Password">
+                    </div>
+
+                    <div *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+                        <div *ngIf="f['password'].errors['required']" style="color: red;" class="help-block has-error">
+                            Password is required
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary btn-block">Sign Me In</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,103 @@
+<div class="col-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Customers</h4>
+      <button class="btn btn-success btn-sm" style="margin-left: 200px;"
+        [routerLink]="['/protected/customers/create']">Create</button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive" *ngIf="(customers$ |async) as customers">
+
+
+
+        <p-table #dt2 [value]="customers" dataKey="id" [rows]="10" sortField="id" [sortOrder]="-1" [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [globalFilterFields]="['name','mobile','agent.agentName']" [tableStyle]="{'min-width':'75rem'}">
+          <ng-template pTemplate="caption">
+            <div class="flex">
+              <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt2.filterGlobal($any($event).target.value, 'contains')"
+                  placeholder="Search keyword" />
+              </span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width:22%">Name</th>
+              <th style="width:22%">Mobile</th>
+              <th style="width:22%">Sales Manager/Agent</th>
+
+            </tr>
+            <tr>
+              <th>
+                <p-columnFilter type="text" field="name"></p-columnFilter>
+              </th>
+              <th>
+                <p-columnFilter type="text" field="mobile"></p-columnFilter>
+              </th>
+
+              <th>
+                <p-columnFilter field="agent" matchMode="in" [showMenu]="false">
+                  <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                      <p-multiSelect [ngModel]="value" [options]="agents" placeholder="Any" (onChange)="filter($event.value)" optionLabel="name">
+                          <ng-template let-option pTemplate="item">
+                              <div class="p-multiselect-representative-option">
+                                  
+                                  <span class="ml-1">{{option.name}}</span>
+                              </div>
+                          </ng-template>
+                      </p-multiSelect>
+                  </ng-template>
+              </p-columnFilter>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-customer>
+            <tr>
+              <td>{{customer.name}}</td>
+              <td>{{customer.mobile}} </td>
+              <td>{{customer?.agent?.name }}</td>
+              
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="7">No customers found.</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+              In total there are {{customers ? customers.length : 0 }} customers.
+            </div>
+          </ng-template>
+        </p-table>
+
+
+
+        <!-- <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger" id="datatableexample">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Mobile</th>
+              <th>Email</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let group of data">
+              <td>{{group.id}}</td>
+              <td>{{group.name}}</td>
+              <td>{{group.mobile}}</td>
+              <td>{{group.email}}</td>
+              <td>{{group.address1}}</td>
+            </tr>
+          </tbody>
+        </table> -->
+      </div>
+    </div>
+  </div>
+</div>
